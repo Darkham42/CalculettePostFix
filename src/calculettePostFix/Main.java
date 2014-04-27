@@ -12,14 +12,13 @@ public class Main {
 		double formule = scan.nextDouble();
 		System.out.println("Vous avez saisi : " + formule);
 		Duracell pile = new Duracell();
-		pile.estVide();
+		System.out.println(pile.estVide());
 		pile.ajoute(52D);
-		System.out.println("Voici la pile :" + pile);
-		pile.estVide();
+		System.out.println(pile.estVide());
 		pile.ajoute(42D);
-		pile.estVide();
+		System.out.println(pile.estVide());
 		pile.retire();
 		pile.retire();
-		pile.estVide();
+		System.out.println(pile.estVide());
 	}
 }
