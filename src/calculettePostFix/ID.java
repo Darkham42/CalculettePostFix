@@ -4,6 +4,11 @@ import calculette.IExpression;
 import calculette.IIdentifiants;
 import calculette.IPile;
 
+/**
+ * La classe <b>ID</b> permet de
+ * @author Thomas
+ *
+ */
 public class ID implements IIdentifiants {
 
 	public int getNombre() {
@@ -26,6 +31,9 @@ public class ID implements IIdentifiants {
 		return null;
 	}
 
+	/**
+	 * Récupération de l'ID
+	 */
 	public String getIdentifiant(int idx) {
 		// TODO Auto-generated method stub
 		return null;

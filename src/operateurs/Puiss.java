@@ -1,4 +1,4 @@
-package signe;
+package operateurs;
 
 import java.util.NoSuchElementException;
 import java.util.Stack;
