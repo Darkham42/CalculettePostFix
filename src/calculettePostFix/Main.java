@@ -170,15 +170,4 @@ public class Main {
             System.out.println("Exception inconnue : \n" + e.toString());
         }
 	}
-		
-	private static Double getValue() {
-		try {
-			System.out.println("Veuillez saisir un chiffre :");
-			return scan.nextDouble();
-		}
-		catch (Exception e) {
-			System.out.println("Valeur invalide : " + scan.nextLine());
-			return Double.NaN;
-		}
-	}
 }
