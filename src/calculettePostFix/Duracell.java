@@ -1,44 +1,43 @@
 package calculettePostFix;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Stack;
 
-import calculette.IElement;
 import calculette.IPile;
 
 /**
  * La classe <b>Duracell</b> permet de gérer la pile
+ * 
  * @author Thomas
- *
+ * 
  */
 public class Duracell implements IPile {
 
-	//Définition d'une pile
-	private Stack<IElement> pile;
-	
-	//Initialisation de la pile
+	// Définition d'une pile
+	private Stack<Double> mPile;
+
+	// Initialisation de la pile
 	public Duracell() {
 		super();
-		this.pile = new Stack<IElement>();
+		this.mPile = new Stack<Double>();
 	}
+
 	/**
 	 * On ajoute un nombre à la pile
 	 */
 	public void ajoute(Double valeur) {
-		UnElement nombre = new UnElement(valeur);
-		pile.add(nombre);
+		mPile.add(valeur);
 	}
 
 	/**
 	 * On retire le dernier nombre placé dans la pile
 	 */
 	public Double retire() throws NoSuchElementException {
-		if (pile.empty()) {
+		if (mPile.empty()) {
 			throw new NoSuchElementException();
-		}
-		else {
-			UnElement supPile = (UnElement) pile.pop();
-			return supPile.getNombre();	
+		} else {
+			return mPile.pop();
 		}
 	}
 
@@ -46,6 +45,19 @@ public class Duracell implements IPile {
 	 * On test si la pile est vide
 	 */
 	public boolean estVide() {
-		return pile.empty();
+		return mPile.empty();
+	}
+
+	@Override
+	public String toString() {
+		StringBuffer r = new StringBuffer("[ ");
+		for (Iterator<Double> iter = mPile.iterator(); iter.hasNext();) {
+			r.append(iter.next().toString());
+			if (iter.hasNext()) {
+				r.append(", ");
+			}
+		}
+		r.append(" ]");
+		return r.toString();
 	}
 }

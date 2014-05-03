@@ -10,15 +10,17 @@ import calculette.unaires.ICos;
 
 public class Cos implements ICos {
 
-	public double calcule(IPile evaluations, IIdentifiants ids)
+	public Double calcule(IPile evaluations, IIdentifiants ids)
 			throws IllegalStateException {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		Double nombre = evaluations.retire();
+		Double resultat = Math.cos(nombre);
+
+		return resultat;
 	}
 
 	public String toStringInfix(Stack<String> chaines) {
-		// TODO Auto-generated method stub
-		return null;
+		return "cos";
 	}
 
 	public void analyse(Stack<IElement> elements, IIdentifiants ids)

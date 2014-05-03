@@ -8,17 +8,19 @@ import calculette.IIdentifiants;
 import calculette.IPile;
 import calculette.unaires.INeg;
 
-public class Negation implements INeg {
+public class Neg implements INeg {
 
-	public double calcule(IPile evaluations, IIdentifiants ids)
+	public Double calcule(IPile evaluations, IIdentifiants ids)
 			throws IllegalStateException {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		Double nombre = evaluations.retire();
+		Double resultat = -nombre;
+
+		return resultat;
 	}
 
 	public String toStringInfix(Stack<String> chaines) {
-		// TODO Auto-generated method stub
-		return null;
+		return "neg";
 	}
 
 	public void analyse(Stack<IElement> elements, IIdentifiants ids)

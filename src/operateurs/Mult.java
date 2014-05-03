@@ -10,15 +10,18 @@ import calculette.binaires.IMultiplication;
 
 public class Mult implements IMultiplication {
 
-	public double calcule(IPile evaluations, IIdentifiants ids)
+	public Double calcule(IPile evaluations, IIdentifiants ids)
 			throws IllegalStateException {
-		// TODO Auto-generated method stub
-		return 0;
+
+		Double arg1 = evaluations.retire();
+		Double arg2 = evaluations.retire();
+		Double resultat = arg1 * arg2;
+
+		return resultat;
 	}
 
 	public String toStringInfix(Stack<String> chaines) {
-		// TODO Auto-generated method stub
-		return null;
+		return "*";
 	}
 
 	public void analyse(Stack<IElement> elements, IIdentifiants ids)

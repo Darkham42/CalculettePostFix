@@ -34,7 +34,7 @@ public interface IIdentifiants
    *          la valeur de l'expression à stocker
    * @return le nom de l'identifiant défini
    */
-  public String set(int idx, IExpression valeur);
+  public String set(String id, IExpression valeur);
 
   /**
    * Retourne la valeur de l'identifiant spécifié.
@@ -44,13 +44,6 @@ public interface IIdentifiants
    * @return sa valeur ou {@code null} si elle n'est pas définie.
    */
   public IExpression get(String id);
-
-  /**
-   * Récupère le nom d'un identifiant.
-   * @param idx le numéro de l'identifiant à récupérer
-   * @return la chaîne décrivant l'identifiant.
-   */
-  public String getIdentifiant(int idx);
 
   /**
    * Teste si l'identifiant donné est défini

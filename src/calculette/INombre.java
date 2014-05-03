@@ -3,23 +3,12 @@ package calculette;
 import java.util.NoSuchElementException;
 import java.util.Stack;
 
-public class INombre implements IElement{
+public interface INombre extends IElement {
 
-	public double calcule(IPile evaluations, IIdentifiants ids)
-			throws IllegalStateException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public Double calcule(IPile evaluations, IIdentifiants ids) throws NoSuchElementException;
 
-	public String toStringInfix(Stack<String> chaines) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public String toStringInfix(Stack<String> chaines);
 
-	public void analyse(Stack<IElement> elements, IIdentifiants ids)
-			throws NoSuchElementException {
-		// TODO Auto-generated method stub
-		
-	}
+	public void analyse(Stack<IElement> elements, IIdentifiants ids) throws IllegalStateException;
 
 }

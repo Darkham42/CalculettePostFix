@@ -16,7 +16,7 @@ public interface IElement
    * @return la valeur de cet élément
    * @throws IllegalStateException si l'élément est incalculable
    */
-  public double calcule(IPile evaluations, IIdentifiants ids) throws IllegalStateException;
+  public Double calcule(IPile evaluations, IIdentifiants ids) throws IllegalStateException;
 
   /**
    * Construit une représentation infixe de cet élément à l'aide d'une pile, et l'ajoute sur la pile.
