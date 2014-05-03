@@ -28,12 +28,13 @@ public class UneExpression implements IExpression {
 	}
 
 	public double calcule(IPile pile, IIdentifiants ids, boolean displaySteps) {
+		System.out.println("Expression : " + toStringInfix());
 
 		for( Iterator<IElement> iter = mExpression.iterator(); iter.hasNext(); ) {
 			IElement element = iter.next();
 			if( displaySteps ) { System.out.println("Pile avant : " + pile.toString()); }
 
-			if( displaySteps ) { System.out.println("Processing element : " + element.toStringInfix(null)); }
+			if( displaySteps ) { System.out.println("Processing element : " + element.toString()); }
 			pile.ajoute(element.calcule(pile, ids));
 
 			if( displaySteps ) { System.out.println("Pile après : " + pile.toString()); }
@@ -43,8 +44,22 @@ public class UneExpression implements IExpression {
 	}
 
 	public String toStringInfix() {
-		// TODO Auto-generated method stub
-		return null;
+		if( mExpression != null ) {
+			Stack<String> chaines = new Stack<String>();
+			
+			for( Iterator<IElement> iter = mExpression.iterator(); iter.hasNext(); ) {
+				IElement element = iter.next();
+				chaines.push(element.toStringInfix(chaines));
+			}
+			
+			StringBuffer sb = new StringBuffer();
+			for( Iterator<String> iter = chaines.iterator(); iter.hasNext(); ) {
+				String s = iter.next();
+				sb.append(s);
+			}
+			return sb.toString();
+		}
+		return "";
 	}
 
 	public boolean estVide() {

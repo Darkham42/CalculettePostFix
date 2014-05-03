@@ -20,6 +20,11 @@ public class Cos implements ICos {
 	}
 
 	public String toStringInfix(Stack<String> chaines) {
+		String arg1 = chaines.pop();
+		return "cos(" + arg1 + ")";
+	}
+
+	public String toString() {
 		return "cos";
 	}
 

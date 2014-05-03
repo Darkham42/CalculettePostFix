@@ -34,6 +34,10 @@ public class Nombre implements INombre {
 		return mValue.toString();
 	}
 
+	public String toString() {
+		return mValue.toString();
+	}
+
 	/* (non-Javadoc)
 	 * @see calculette.INombre#analyse(java.util.Stack, calculette.IIdentifiants)
 	 */

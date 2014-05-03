@@ -21,6 +21,12 @@ public class Sous implements ISoustration {
 	}
 
 	public String toStringInfix(Stack<String> chaines) {
+		String arg1 = chaines.pop();
+		String arg2 = chaines.pop();
+		return "( " + arg2 + " - " + arg1 + " )";
+	}
+
+	public String toString() {
 		return "-";
 	}
 

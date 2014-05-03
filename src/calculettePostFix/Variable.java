@@ -1,4 +1,4 @@
-package unaire;
+package calculettePostFix;
 
 import java.util.NoSuchElementException;
 import java.util.Stack;
@@ -6,27 +6,27 @@ import java.util.Stack;
 import calculette.IElement;
 import calculette.IIdentifiants;
 import calculette.IPile;
-import calculette.unaires.INeg;
 
-public class Neg implements INeg {
+public class Variable implements IElement {
+
+	private String mName;
+
+	public Variable(String name) {
+		mName = name;
+	}
 
 	public Double calcule(IPile evaluations, IIdentifiants ids)
 			throws IllegalStateException {
-		
-		Double nombre = evaluations.retire();
-		Double resultat = -nombre;
-
-		return resultat;
+	
+		return ids.calcule(evaluations, mName);
 	}
 
 	public String toStringInfix(Stack<String> chaines) {
-		String arg1 = chaines.pop();
-		return "neg(" + arg1 + ")";
-
+		return mName;
 	}
 
 	public String toString() {
-		return "neg";
+		return mName;
 	}
 
 	public void analyse(Stack<IElement> elements, IIdentifiants ids)
