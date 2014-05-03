@@ -8,8 +8,16 @@ import calculette.IIdentifiants;
 import calculette.IPile;
 import calculette.binaires.IPuissance;
 
+/**
+ * La classe <b>Puiss</b> permet de faire d'effectuer un calcul de puissance
+ * @author Thomas
+ *
+ */
 public class Puiss implements IPuissance {
-
+	
+	/**
+	 * Permet d'effectuer un calcul de puissance sur un argument en utilisant un autre argument, tous les deux sont issus de la pile 
+	 */
 	public Double calcule(IPile evaluations, IIdentifiants ids)
 			throws IllegalStateException {
 

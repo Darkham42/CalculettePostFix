@@ -8,8 +8,16 @@ import calculette.IIdentifiants;
 import calculette.IPile;
 import calculette.binaires.IDivision;
 
+/**
+ * La classe <b>Div</b> permet de faire des divisions
+ * @author Thomas
+ *
+ */
 public class Div implements IDivision {
-
+	
+	/**
+	 * Permet d'effectuer une division en utilisant 2 arguments issus de la pile 
+	 */
 	public Double calcule(IPile evaluations, IIdentifiants ids)
 			throws IllegalStateException {
 

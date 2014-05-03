@@ -8,8 +8,16 @@ import calculette.IIdentifiants;
 import calculette.IPile;
 import calculette.binaires.IMultiplication;
 
+/**
+ * La classe <b>Mult</b> permet de faire des multiplications
+ * @author Thomas
+ *
+ */
 public class Mult implements IMultiplication {
-
+	
+	/**
+	 * Permet d'effectuer une multiplication en utilisant 2 arguments issus de la pile 
+	 */
 	public Double calcule(IPile evaluations, IIdentifiants ids)
 			throws IllegalStateException {
 

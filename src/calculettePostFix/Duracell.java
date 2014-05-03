@@ -1,6 +1,5 @@
 package calculettePostFix;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Stack;
 
@@ -48,16 +47,10 @@ public class Duracell implements IPile {
 		return mPile.empty();
 	}
 
-	@Override
+	/**
+	 * Affichage de la pile
+	 */
 	public String toString() {
-		StringBuffer r = new StringBuffer("[ ");
-		for (Iterator<Double> iter = mPile.iterator(); iter.hasNext();) {
-			r.append(iter.next().toString());
-			if (iter.hasNext()) {
-				r.append(", ");
-			}
-		}
-		r.append(" ]");
-		return r.toString();
+		return mPile.toString();
 	}
 }

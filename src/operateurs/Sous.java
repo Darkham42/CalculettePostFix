@@ -8,8 +8,16 @@ import calculette.IIdentifiants;
 import calculette.IPile;
 import calculette.binaires.ISoustration;
 
+/**
+ * La classe <b>Sous</b> permet de faire des soustractions
+ * @author Thomas
+ *
+ */
 public class Sous implements ISoustration {
 
+	/**
+	 * Permet d'effectuer une soustraction en utilisant 2 arguments issus de la pile 
+	 */
 	public Double calcule(IPile evaluations, IIdentifiants ids)
 			throws IllegalStateException {
 
