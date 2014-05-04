@@ -26,11 +26,15 @@ public class UneExpression implements IExpression {
 	}
 
 	/**
-	 * Permet de ...
+	 * Permet de tester si l
 	 */
 	public void analyse(IIdentifiants ids) throws NoSuchElementException {
-		// TODO Auto-generated method stub
-
+		try {
+			String test = this.toStringInfix();
+		} catch(Exception e) {
+			// on ignore la 1ere execption et on lance celle-ci
+			throw new NoSuchElementException();
+		}
 	}
 
 	/**
@@ -52,9 +56,9 @@ public class UneExpression implements IExpression {
 
 		for( Iterator<IElement> iter = mExpression.iterator(); iter.hasNext(); ) {
 			IElement element = iter.next();
-			if( displaySteps ) { System.out.println("Pile avant : " + pile.toString()); }
+			//if( displaySteps ) { System.out.println("Pile avant : " + pile.toString()); }
 
-			if( displaySteps ) { System.out.println("Processing element : " + element.toString()); }
+			//if( displaySteps ) { System.out.println("Processing element : " + element.toString()); }
 			pile.ajoute(element.calcule(pile, ids));
 
 			if( displaySteps ) { System.out.println("Pile après : " + pile.toString()); }
