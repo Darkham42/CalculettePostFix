@@ -1,0 +1,1 @@
+Impossible de diviser par 0L'expression : ( 2.0 / 0.0 )impossible de diviser par 0

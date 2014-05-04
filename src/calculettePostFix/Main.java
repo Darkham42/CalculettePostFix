@@ -31,43 +31,42 @@ public class Main {
 			Duracell pile = new Duracell();
 			Identifiants ids = new Identifiants();
 
+			UneExpression une = lireExpression(ids, null);
 			// on vérifie l'expression créé
 			try {
-				UneExpression une = lireExpression(ids, null);
-
 				une.analyse(ids);
-				System.out.println("Analyse passée");
-
-				System.out.println("Expression parsée : " + une.toStringInfix());
 				
-				//on copie l'expression dans le fichier txt
+				// on copie l'expression dans le fichier txt
 				resTXT("\r\nExpression à calculer : " + une.toStringInfix() + " = ");
-				errorsTXT("\r\nExpression à calculer : " + une.toStringInfix() + " = ");
 
 				// calcul
 				double result = une.calcule(pile, ids, affichage_pile);
 				System.out.println("Resultat : " + result + ids);
 				resTXT(new Double(result).toString() + ids.toString());
 			} catch (NoSuchElementException e) {
-				// en cas d'anomalie lors de l'analyse ou du calcul de l'expression
+				// en cas d'anomalie lors de l'analyse ou du calcul de
+				// l'expression
 				System.out.println("Unknown exception : \n" + e.toString());
+			} catch (DivideByZeroException e) {
+				errorsTXT("\r\nL'expression : " + une.toStringInfix()
+						+ " impossible de diviser par 0\n");
 			} catch (Exception e) {
-				// cas où il manque un opérateur
 				System.out.println("Unknown exception : \n" + e.toString());
-			
 			}
 
 			// plusieurs calculs
-			System.out.println("Voulez vous effectuer un nouveau calcul ? (Oui/Non) : ");
+			System.out
+					.println("Voulez vous effectuer un nouveau calcul ? (Oui/Non) : ");
 			restart = scan.nextLine();
 			restart = restart.toLowerCase();
 		} while ("oui".equalsIgnoreCase(restart));
 		System.out.println("Au revoir");
 	}
 
-	private static UneExpression lireExpression(IIdentifiants ids, String variable) {
+	private static UneExpression lireExpression(IIdentifiants ids,
+			String variable) {
 		Stack<IElement> stack = new Stack<IElement>();
-		
+
 		System.out.println("Veuillez saisir l'expression");
 		String line = scan.nextLine();
 		System.out.println("Expression à calculer : " + line);
@@ -80,21 +79,27 @@ public class Main {
 			}
 		}
 
-		// Si l'expression contient des variables, il faut demander leur définition
-		if( ids.getNombre() > 0 && variable == null) {
+		// Si l'expression contient des variables, il faut demander leur
+		// définition
+		if (ids.getNombre() > 0 && variable == null) {
 			Set<String> noms = ids.getAll();
-			for( Iterator<String> iter = noms.iterator(); iter.hasNext(); ) {
+			for (Iterator<String> iter = noms.iterator(); iter.hasNext();) {
 				String name = iter.next();
-				if( name.equals(variable) ) {
+				if (name.equals(variable)) {
 					// on ne peut pas rentrer l'expression de la même variable
-					System.out.println("variable " + name + " en cours de traitement ");
+					System.out.println("variable " + name
+							+ " en cours de traitement ");
 				} else {
 					// il faut vérifier si la variable a déjà été rentrée
-					if( ids.get(name).estVide() ) {
-						System.out.println("Veuillez saisir la valeur de la variable " + name + " : ");
+					if (ids.get(name).estVide()) {
+						System.out
+								.println("Veuillez saisir la valeur de la variable "
+										+ name + " : ");
 						ids.set(name, lireExpression(ids, name));
 					} else {
-						System.out.println("La valeur de la variable " + name + " est déjà rentrée : " + ids.get(name).toStringInfix());
+						System.out.println("La valeur de la variable " + name
+								+ " est déjà rentrée : "
+								+ ids.get(name).toStringInfix());
 					}
 				}
 			}
@@ -121,29 +126,28 @@ public class Main {
 		case "neg":
 			return new Neg();
 		}
-		
+
 		// on essaie de parser l'element en un nombre
 		try {
 			Double temp = Double.valueOf(element);
-			
+
 			// le parsing a reussi, on retourne un Element Nombre
 			return new Nombre(temp);
 		} catch (Exception e) {
-			// le parsing n'a pas réussi, ce n'est pas un nombre, on passe au traitement suivant (= les variables)
+			// le parsing n'a pas réussi, ce n'est pas un nombre, on passe au
+			// traitement suivant (= les variables)
 			// a enlever avant de livrer le projet :)
-			//System.out.println("Unknown exception : \n" + e.toString());
-		// test pour verifier si l'element ne contient que des lettres (nom d'une variable)
-		if (element.matches("[a-zA-Z]+") ) {
-			ids.ajoute(element);
-			return new Variable(element);
+			// System.out.println("Unknown exception : \n" + e.toString());
+			// test pour verifier si l'element ne contient que des lettres (nom
+			// d'une variable)
+			if (element.matches("[a-zA-Z]+")) {
+				ids.ajoute(element);
+				return new Variable(element);
+			}
 		}
-		}
-		try {//élément non traitable
-		} catch (Exception e) {
-			errorsTXT("Erreur : Caractère invalide ( " + element + " )");
-		}
+		return null;
 	}
-	
+
 	private static void resTXT(String texte) {
 		logTXT("Résultats.txt", texte);
 	}
@@ -151,24 +155,24 @@ public class Main {
 	private static void errorsTXT(String texte) {
 		logTXT("Erreurs.txt", texte);
 	}
-	
-	//sous fonction pour alléger le code
+
+	// sous fonction pour alléger le code
 	private static void logTXT(String nom_fichier, String texte) {
 		File logFile = new File(nom_fichier);
-		BufferedWriter writer = null; 
-		
+		BufferedWriter writer = null;
+
 		try {
 			writer = new BufferedWriter(new FileWriter(logFile, true));
-	        writer.write(texte);
+			writer.write(texte);
 		} catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                //On ferme le fichier quoi qu'il advienne
-                writer.close();
-            } catch (Exception e) {
-            	System.out.println("Impossible de créer le fichier");
-            }
-        }
+			e.printStackTrace();
+		} finally {
+			try {
+				// On ferme le fichier quoi qu'il advienne
+				writer.close();
+			} catch (Exception e) {
+				System.out.println("Impossible de créer le fichier");
+			}
+		}
 	}
 }

@@ -6,3 +6,21 @@ Expression à calculer : ( 2.0 - a ) = -8.0 avec { a=10.0 }
 Expression à calculer : ( 1.0 - 1.0 ) = 0.0 avec { }
 Expression à calculer : ( a + 1.0 ) = 101.0 avec { a = 100.0 }
 Expression à calculer : ( 1.0 / 0.0 ) = Infinity avec { }
+Expression à calculer : 2.02.0 = 2.0 avec { }
+Expression à calculer : ( 2.0 - 2.0 ) = 0.0 avec { }
+Expression à calculer : ( 2.0 - 2.0 ) = 0.0 avec { }
+Expression à calculer : ( ( 2.0 - a ) + b ) = 0.0 avec { a = ( 2.0 * b ) b = 2.0 }
+Expression à calculer : ( 2.0 / 0.0 ) = Infinity avec { }
+Expression à calculer : ( 2.0 / 0.0 ) = Infinity avec { }
+Expression à calculer : ( 2.0 / 0.0 ) = 
+Expression à calculer : ( 2.0 / 0.0 ) = 
+Expression à calculer : ( 2.0 / 0.0 ) = 
+Expression à calculer : ( 2.0 / 0.0 ) = Infinity avec { }
+Expression à calculer : ( 2.0 / 0.0 ) = Infinity avec { }
+Expression à calculer : ( 2.0 / 0.0 ) = 
+Expression à calculer : ( 2.0 / 0.0 ) = 
+Expression à calculer : ( 2.0 / 0.0 ) = 
+Expression à calculer : 2.02.0 = 2.0 avec { }
+Expression à calculer : ( 2.0 / 2.0 ) = 1.0 avec { }
+Expression à calculer : ( 1.0 + 2.0 ) = 3.0 avec { }
+Expression à calculer : ( 1.0 + 2.0 ) = 3.0 avec { }

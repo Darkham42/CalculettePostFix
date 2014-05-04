@@ -7,6 +7,7 @@ import calculette.IElement;
 import calculette.IIdentifiants;
 import calculette.IPile;
 import calculette.binaires.IDivision;
+import calculettePostFix.DivideByZeroException;
 
 /**
  * La classe <b>Div</b> permet de faire des divisions
@@ -23,6 +24,9 @@ public class Div implements IDivision {
 
 		Double arg1 = evaluations.retire();
 		Double arg2 = evaluations.retire();
+		if (arg1 == 0) {
+			throw new DivideByZeroException("Impossible de diviser par 0");
+		}
 		Double resultat = arg2 / arg1;
 
 		return resultat;
