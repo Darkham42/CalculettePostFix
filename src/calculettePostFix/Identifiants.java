@@ -16,7 +16,7 @@ import calculette.IPile;
  */
 public class Identifiants implements IIdentifiants {
 
-	//Création d'un HashMap, un tableau avec des index nommés
+	// Création d'un HashMap, un tableau avec des index nommés
 	private HashMap<String, IExpression> mTable = new HashMap<String, IExpression>();
 
 	/**
@@ -25,7 +25,7 @@ public class Identifiants implements IIdentifiants {
 	public int getNombre() {
 		return mTable.size();
 	}
-	
+
 	/**
 	 * Permet de déclarer une variable
 	 */
@@ -40,20 +40,20 @@ public class Identifiants implements IIdentifiants {
 		mTable.put(id, valeur);
 		return id;
 	}
-	
+
 	/**
-	   * Retourne le nom de la variable spécifiée.
-	   * 
-	   * @param id
-	   *          l'identifiant à rechercher
-	   * @return le nom de la variable
-	   */
+	 * Retourne le nom de la variable spécifiée.
+	 * 
+	 * @param id
+	 *            l'identifiant à rechercher
+	 * @return le nom de la variable
+	 */
 	public Set<String> getAll() {
 		return mTable.keySet();
 	}
 
 	/**
-	 * Permet de récupérer la valeur de la valeur
+	 * Permet de récupérer la valeur de la variable
 	 */
 	public IExpression get(String id) {
 		return mTable.get(id);
@@ -77,26 +77,32 @@ public class Identifiants implements IIdentifiants {
 	 * Permet de vérifier si la variable est calculable
 	 */
 	public boolean estCalculable(String id) {
-		// TODO Auto-generated method stub
-		return false;
+			
+			try {
+				mTable.get(id).analyse(null);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
 	}
 
 	/**
-	 * Permet de construire la chaine avec la liste des variable et leurs expressions
+	 * Permet de construire la chaine avec la liste des variable et leurs
+	 * expressions
 	 */
 	public String toString() {
 		StringBuffer sb = new StringBuffer(" avec {");
 		Set<String> keys = mTable.keySet();
-		
-		for( Iterator<String> iter = keys.iterator(); iter.hasNext(); ) {
+
+		for (Iterator<String> iter = keys.iterator(); iter.hasNext();) {
 			String name = iter.next();
-			
+
 			sb.append(" ");
 			sb.append(name);
 			sb.append(" = ");
 			sb.append(mTable.get(name).toStringInfix());
 		}
-		
+
 		sb.append(" }");
 		return sb.toString();
 	}

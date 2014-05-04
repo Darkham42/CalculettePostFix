@@ -7,16 +7,19 @@ import calculette.IElement;
 import calculette.IIdentifiants;
 import calculette.IPile;
 import calculette.binaires.IPuissance;
+import calculettePostFix.ArgumentMissException;
 
 /**
  * La classe <b>Puiss</b> permet de faire d'effectuer un calcul de puissance
+ * 
  * @author Thomas
- *
+ * 
  */
 public class Puiss implements IPuissance {
-	
+
 	/**
-	 * Permet d'effectuer un calcul de puissance sur un argument en utilisant un autre argument, tous les deux sont issus de la pile 
+	 * Permet d'effectuer un calcul de puissance sur un argument en utilisant un
+	 * autre argument, tous les deux sont issus de la pile
 	 */
 	public Double calcule(IPile evaluations, IIdentifiants ids)
 			throws IllegalStateException {
@@ -40,13 +43,21 @@ public class Puiss implements IPuissance {
 
 	public void analyse(Stack<IElement> elements, IIdentifiants ids)
 			throws NoSuchElementException {
-		
+
 		// l'opérateur a besoin de 2 arguments valables
-				IElement argument = elements.pop();
-				argument.analyse(elements, ids);
-				
-				argument = elements.pop();
-				argument.analyse(elements, ids);
+		if( elements.empty() ) {
+			// il manque le 2nd argument
+			throw new ArgumentMissException("Il manque le 1er argument");
+		}
+		IElement argument = elements.pop();
+		argument.analyse(elements, ids);
+
+		if( elements.empty() ) {
+			// il manque le 2nd argument
+			throw new ArgumentMissException("Il manque le 2nd argument");
+		}
+		argument = elements.pop();
+		argument.analyse(elements, ids);
 
 	}
 

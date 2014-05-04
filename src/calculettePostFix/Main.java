@@ -1,6 +1,5 @@
 package calculettePostFix;
 
-import java.io.*;
 import java.util.*;
 
 import operateurs.*;
@@ -8,7 +7,6 @@ import unaire.*;
 import calculette.*;
 
 public class Main {
-
 	static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -34,22 +32,22 @@ public class Main {
 			UneExpression une = lireExpression(ids, null);
 			// on vérifie l'expression créé
 			try {
-				une.analyse(ids);
-				
-				// on copie l'expression dans le fichier txt
-				resTXT("\r\nExpression à calculer : " + une.toStringInfix() + " = ");
-
 				// calcul
 				double result = une.calcule(pile, ids, affichage_pile);
+
 				System.out.println("Resultat : " + result + ids);
-				resTXT(new Double(result).toString() + ids.toString());
+				LogFile.resTXT("\r\nExpression à calculer : " + une.toStringInfix()
+						+ " = " + new Double(result).toString() + ids.toString());
 			} catch (NoSuchElementException e) {
 				// en cas d'anomalie lors de l'analyse ou du calcul de
 				// l'expression
-				System.out.println("Unknown exception : \n" + e.toString());
+				LogFile.errorsTXT("Unknown exception : \n" + e.toString());
 			} catch (DivideByZeroException e) {
-				errorsTXT("\r\nL'expression : " + une.toStringInfix()
+				LogFile.errorsTXT("\r\nL'expression : " + une.toStringInfix()
 						+ " impossible de diviser par 0\n");
+			} catch (OperatorMissException e) {
+				LogFile.errorsTXT("\r\n Il semble manquer un opérateur à l'expression : "
+						+ une.toStringInfix());
 			} catch (Exception e) {
 				System.out.println("Unknown exception : \n" + e.toString());
 			}
@@ -69,44 +67,61 @@ public class Main {
 
 		System.out.println("Veuillez saisir l'expression");
 		String line = scan.nextLine();
+		String lastToken = null;
 		System.out.println("Expression à calculer : " + line);
 
-		// on découpe en morceau la chaine
-		for (String token : line.split(" ")) {
-			IElement result = addElement(token, ids);
-			if (result != null) {
-				stack.push(result);
+		try {
+			// on découpe en morceau la chaine
+			for (String token : line.split(" ")) {
+				lastToken = token;
+				IElement result = addElement(token, ids);
+				if (result != null) {
+					stack.push(result);
+				}
 			}
-		}
-
-		// Si l'expression contient des variables, il faut demander leur
-		// définition
-		if (ids.getNombre() > 0 && variable == null) {
-			Set<String> noms = ids.getAll();
-			for (Iterator<String> iter = noms.iterator(); iter.hasNext();) {
-				String name = iter.next();
-				if (name.equals(variable)) {
-					// on ne peut pas rentrer l'expression de la même variable
-					System.out.println("variable " + name
-							+ " en cours de traitement ");
-				} else {
-					// il faut vérifier si la variable a déjà été rentrée
-					if (ids.get(name).estVide()) {
-						System.out
-								.println("Veuillez saisir la valeur de la variable "
-										+ name + " : ");
-						ids.set(name, lireExpression(ids, name));
+	
+			// Si l'expression contient des variables, il faut demander leur
+			// définition
+			if (ids.getNombre() > 0 && variable == null) {
+				Set<String> noms = ids.getAll();
+				for (Iterator<String> iter = noms.iterator(); iter.hasNext();) {
+					String name = iter.next();
+					if (name.equals(variable)) {
+						// on ne peut pas rentrer l'expression de la même variable
+						System.out.println("variable " + name
+								+ " en cours de traitement ");
 					} else {
-						System.out.println("La valeur de la variable " + name
-								+ " est déjà rentrée : "
-								+ ids.get(name).toStringInfix());
+						// il faut vérifier si la variable a déjà été rentrée
+						if (ids.get(name).estVide()) {
+							System.out
+									.println("Veuillez saisir la valeur de la variable "
+											+ name + " : ");
+							ids.set(name, lireExpression(ids, name));
+						} else {
+							System.out.println("La valeur de la variable " + name
+									+ " est déjà rentrée : "
+									+ ids.get(name).toStringInfix());
+						}
 					}
 				}
 			}
-		}
 
-		System.out.println("fin de traitement de l'expresion");
-		return new UneExpression(stack);
+			UneExpression resultat = new UneExpression(stack);
+			resultat.analyse(ids);
+			return resultat;
+		} catch (ArgumentMissException e) {
+			LogFile.errorsTXT("\r\n Il semble manquer un argument à l'expression : "
+					+ line
+					+ "\n");
+		} catch (CharInvalidException e) {
+			LogFile.errorsTXT("\r\n L'expression : "
+					+ line
+					+ " contient un caractère non valide ("
+					+ lastToken
+					+ ")\n" );
+		}
+		
+		return lireExpression(ids, variable);
 	}
 
 	private static IElement addElement(String element, IIdentifiants ids) {
@@ -145,34 +160,8 @@ public class Main {
 				return new Variable(element);
 			}
 		}
-		return null;
-	}
 
-	private static void resTXT(String texte) {
-		logTXT("Résultats.txt", texte);
-	}
-
-	private static void errorsTXT(String texte) {
-		logTXT("Erreurs.txt", texte);
-	}
-
-	// sous fonction pour alléger le code
-	private static void logTXT(String nom_fichier, String texte) {
-		File logFile = new File(nom_fichier);
-		BufferedWriter writer = null;
-
-		try {
-			writer = new BufferedWriter(new FileWriter(logFile, true));
-			writer.write(texte);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				// On ferme le fichier quoi qu'il advienne
-				writer.close();
-			} catch (Exception e) {
-				System.out.println("Impossible de créer le fichier");
-			}
-		}
+		// element non connu
+		throw new CharInvalidException();
 	}
 }

@@ -28,7 +28,7 @@ public class Variable implements IElement {
 	 */
 	public Double calcule(IPile evaluations, IIdentifiants ids)
 			throws IllegalStateException {
-	
+
 		return ids.calcule(evaluations, mName);
 	}
 
@@ -51,8 +51,6 @@ public class Variable implements IElement {
 	 */
 	public void analyse(Stack<IElement> elements, IIdentifiants ids)
 			throws NoSuchElementException {
-		// TODO Auto-generated method stub
-
 	}
 
 }
