@@ -49,8 +49,13 @@ public class Add implements IAddition {
 	 */
 	public void analyse(Stack<IElement> elements, IIdentifiants ids)
 			throws NoSuchElementException {
-		// TODO Auto-generated method stub
-
+		
+		// l'opérateur a besoin de 2 arguments valables
+		IElement argument = elements.pop();
+		argument.analyse(elements, ids);
+		
+		argument = elements.pop();
+		argument.analyse(elements, ids);
 	}
 
 }

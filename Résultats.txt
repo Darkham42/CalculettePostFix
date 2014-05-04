@@ -1,0 +1,8 @@
+
+Expression à calculer : ( 2.0 - 2.0 ) = 0.0
+Expression à calculer : ( 2.0 - a ) = 0.0
+Expression à calculer : ( 5.0 + a ) = 15.0{ a=10.0 }
+Expression à calculer : ( 2.0 - a ) = -8.0 avec { a=10.0 }
+Expression à calculer : ( 1.0 - 1.0 ) = 0.0 avec { }
+Expression à calculer : ( a + 1.0 ) = 101.0 avec { a = 100.0 }
+Expression à calculer : ( 1.0 / 0.0 ) = Infinity avec { }

@@ -26,11 +26,18 @@ public class UneExpression implements IExpression {
 	}
 
 	/**
-	 * Permet de tester si l
+	 * Permet de tester si l'expression est bien formé
 	 */
 	public void analyse(IIdentifiants ids) throws NoSuchElementException {
 		try {
-			String test = this.toStringInfix();
+			// une copie de la pile pour vérifier l'expression
+			Stack<IElement> copie = (Stack<IElement>) mExpression.clone();
+			
+			// on dépile le premier element
+			IElement premier = copie.pop();
+			
+			// on démarre l'analyse. En cas d'erreur, une exception est généréee
+			premier.analyse(copie, ids);
 		} catch(Exception e) {
 			// on ignore la 1ere execption et on lance celle-ci
 			throw new NoSuchElementException();
@@ -56,15 +63,18 @@ public class UneExpression implements IExpression {
 
 		for( Iterator<IElement> iter = mExpression.iterator(); iter.hasNext(); ) {
 			IElement element = iter.next();
-			//if( displaySteps ) { System.out.println("Pile avant : " + pile.toString()); }
-
-			//if( displaySteps ) { System.out.println("Processing element : " + element.toString()); }
 			pile.ajoute(element.calcule(pile, ids));
 
 			if( displaySteps ) { System.out.println("Pile après : " + pile.toString()); }
 		}
 
-		return pile.retire();
+		// test à ajouter : est-ce qu'il reste uniquement un seul element dans la pile ?
+		double resultat = pile.retire();
+		
+		if( !pile.estVide() ) {
+			System.out.println("Attention, l'expression semble incomplète, il reste des éléments sur la pile de calcul");
+		}
+		return resultat;
 	}
 
 	/**
@@ -93,7 +103,10 @@ public class UneExpression implements IExpression {
 	 * Permet de vérifier si l'expression est vide
 	 */
 	public boolean estVide() {
-		return mExpression.empty();
+		if( mExpression != null) {
+			return mExpression.empty();
+		}
+		return true;
 	}
 
 }

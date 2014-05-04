@@ -1,6 +1,7 @@
 package calculette;
 
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 /**
  * Mémorise les identifiants et leur valeur
@@ -44,6 +45,13 @@ public interface IIdentifiants
    * @return sa valeur ou {@code null} si elle n'est pas définie.
    */
   public IExpression get(String id);
+
+  /**
+   * Retourne le nom de toutes les variables connues.
+   * 
+   * @return une liste avec les noms des variables
+   */
+  public Set<String> getAll();
 
   /**
    * Teste si l'identifiant donné est défini

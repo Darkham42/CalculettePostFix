@@ -40,6 +40,17 @@ public class Identifiants implements IIdentifiants {
 		mTable.put(id, valeur);
 		return id;
 	}
+	
+	/**
+	   * Retourne le nom de la variable spécifiée.
+	   * 
+	   * @param id
+	   *          l'identifiant à rechercher
+	   * @return le nom de la variable
+	   */
+	public Set<String> getAll() {
+		return mTable.keySet();
+	}
 
 	/**
 	 * Permet de récupérer la valeur de la valeur
@@ -74,7 +85,7 @@ public class Identifiants implements IIdentifiants {
 	 * Permet de construire la chaine avec la liste des variable et leurs expressions
 	 */
 	public String toString() {
-		StringBuffer sb = new StringBuffer("{");
+		StringBuffer sb = new StringBuffer(" avec {");
 		Set<String> keys = mTable.keySet();
 		
 		for( Iterator<String> iter = keys.iterator(); iter.hasNext(); ) {
@@ -82,7 +93,7 @@ public class Identifiants implements IIdentifiants {
 			
 			sb.append(" ");
 			sb.append(name);
-			sb.append("=");
+			sb.append(" = ");
 			sb.append(mTable.get(name).toStringInfix());
 		}
 		

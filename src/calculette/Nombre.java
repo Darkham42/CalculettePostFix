@@ -43,7 +43,7 @@ public class Nombre implements INombre {
 	 */
 	public void analyse(Stack<IElement> elements, IIdentifiants ids)
 			throws IllegalStateException {
-
+	
 		// rien à effectuer pour l'analyse
 	}
 

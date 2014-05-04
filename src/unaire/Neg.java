@@ -31,7 +31,10 @@ public class Neg implements INeg {
 
 	public void analyse(Stack<IElement> elements, IIdentifiants ids)
 			throws NoSuchElementException {
-		// TODO Auto-generated method stub
+		
+		// l'opérateur a besoin d'un argument valable
+		IElement argument = elements.pop();
+		argument.analyse(elements, ids);
 
 	}
 
