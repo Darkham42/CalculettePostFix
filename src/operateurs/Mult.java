@@ -43,16 +43,13 @@ public class Mult implements IMultiplication {
 
 	public void analyse(Stack<IElement> elements, IIdentifiants ids)
 			throws NoSuchElementException {
-		// l'opérateur a besoin de 2 arguments valables
-		if( elements.empty() ) {
-			// il manque le 2nd argument
+		if (elements.empty()) {
 			throw new ArgumentMissException("Il manque le 1er argument");
 		}
 		IElement argument = elements.pop();
 		argument.analyse(elements, ids);
 
-		if( elements.empty() ) {
-			// il manque le 2nd argument
+		if (elements.empty()) {
 			throw new ArgumentMissException("Il manque le 2nd argument");
 		}
 		argument = elements.pop();

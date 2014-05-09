@@ -26,7 +26,7 @@ public class Add implements IAddition {
 		Double arg1 = evaluations.retire();
 		Double arg2 = evaluations.retire();
 
-		// pas de vérifications sur les arguments
+		// Pas de vérifications sur les arguments
 		Double resultat = arg1 + arg2;
 
 		return resultat;
@@ -54,15 +54,15 @@ public class Add implements IAddition {
 	public void analyse(Stack<IElement> elements, IIdentifiants ids)
 			throws NoSuchElementException {
 
-		// l'opérateur a besoin de 2 arguments valables
-		if( elements.empty() ) {
-			// il manque le 2nd argument
+		// L'opérateur a besoin de 2 arguments valables
+		if (elements.empty()) {
+			// Il manque le 1er argument
 			throw new ArgumentMissException("Il manque le 1er argument");
 		}
 		IElement argument = elements.pop();
 		argument.analyse(elements, ids);
 
-		if( elements.empty() ) {
+		if (elements.empty()) {
 			// il manque le 2nd argument
 			throw new ArgumentMissException("Il manque le 2nd argument");
 		}

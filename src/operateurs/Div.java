@@ -26,8 +26,8 @@ public class Div implements IDivision {
 
 		Double arg1 = evaluations.retire();
 		Double arg2 = evaluations.retire();
-		
-		// verification des valeurs
+
+		// Verification des valeurs
 		if (arg1 == 0) {
 			throw new DivideByZeroException("Impossible de diviser par 0");
 		}
@@ -49,21 +49,17 @@ public class Div implements IDivision {
 	public void analyse(Stack<IElement> elements, IIdentifiants ids)
 			throws NoSuchElementException {
 
-		// l'opérateur a besoin de 2 arguments valables
-		if( elements.empty() ) {
-			// il manque le 2nd argument
+		if (elements.empty()) {
 			throw new ArgumentMissException("Il manque le 1er argument");
 		}
 		IElement argument = elements.pop();
 		argument.analyse(elements, ids);
 
-		if( elements.empty() ) {
-			// il manque le 2nd argument
+		if (elements.empty()) {
 			throw new ArgumentMissException("Il manque le 2nd argument");
 		}
 		argument = elements.pop();
 		argument.analyse(elements, ids);
-
 	}
 
 }

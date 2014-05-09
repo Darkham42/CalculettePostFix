@@ -1,5 +1,12 @@
 package calculettePostFix;
 
+/**
+ * La classe <b>OperatorMissException</b> permet de gérer l'erreur du manque
+ * d'un opérateur
+ * 
+ * @author Thomas
+ * 
+ */
 @SuppressWarnings("serial")
 public class OperatorMissException extends IllegalArgumentException {
 

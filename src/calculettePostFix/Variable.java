@@ -28,7 +28,6 @@ public class Variable implements IElement {
 	 */
 	public Double calcule(IPile evaluations, IIdentifiants ids)
 			throws IllegalStateException {
-
 		return ids.calcule(evaluations, mName);
 	}
 

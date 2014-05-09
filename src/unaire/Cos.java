@@ -33,7 +33,7 @@ public class Cos implements ICos {
 			throws NoSuchElementException {
 
 		// l'opérateur a besoin de 1 argument valable
-		if( elements.empty() ) {
+		if (elements.empty()) {
 			// il manque le 1er argument
 			throw new ArgumentMissException("Il manque le 1er argument");
 		}

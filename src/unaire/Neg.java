@@ -34,12 +34,12 @@ public class Neg implements INeg {
 			throws NoSuchElementException {
 
 		// l'opérateur a besoin de 1 argument valable
-				if( elements.empty() ) {
-					// il manque le 1er argument
-					throw new ArgumentMissException("Il manque le 1er argument");
-				}
-				IElement argument = elements.pop();
-				argument.analyse(elements, ids);
+		if (elements.empty()) {
+			// il manque le 1er argument
+			throw new ArgumentMissException("Il manque le 1er argument");
+		}
+		IElement argument = elements.pop();
+		argument.analyse(elements, ids);
 	}
 
 }

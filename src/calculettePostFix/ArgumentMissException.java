@@ -1,5 +1,12 @@
 package calculettePostFix;
 
+/**
+ * La classe <b>ArgumentMissException</b> permet de gérer l'erreur du manque
+ * d'argument
+ * 
+ * @author Thomas
+ * 
+ */
 @SuppressWarnings("serial")
 public class ArgumentMissException extends IllegalArgumentException {
 

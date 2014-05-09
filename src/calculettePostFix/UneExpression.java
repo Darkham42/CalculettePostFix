@@ -31,29 +31,24 @@ public class UneExpression implements IExpression {
 	 * Permet de tester si l'expression est bien formé
 	 */
 	public void analyse(IIdentifiants ids) throws NoSuchElementException {
-		//try {
-			// une copie de la pile pour vérifier l'expression
-			@SuppressWarnings("unchecked")
-			Stack<IElement> copie = (Stack<IElement>) mExpression.clone();
+		// On crée une copie de la pile pour vérifier l'expression
+		@SuppressWarnings("unchecked")
+		Stack<IElement> copie = (Stack<IElement>) mExpression.clone();
 
-			// on dépile le premier element
-			IElement premier = copie.pop();
+		// On dépile le premier element
+		IElement premier = copie.pop();
 
-			// on démarre l'analyse. En cas d'erreur, une exception est généréee
-			premier.analyse(copie, ids);
-			
-			// ensuite on verifie les variables
-			if( ids != null ) {
-				Set<String> noms = ids.getAll();
-				for (Iterator<String> iter = noms.iterator(); iter.hasNext();) {
-					String name = iter.next();
-					ids.estCalculable(name);
-				}
+		// On démarre l'analyse. En cas d'erreur, une exception est généréee
+		premier.analyse(copie, ids);
+
+		// Ensuite on verifie les variables
+		if (ids != null) {
+			Set<String> noms = ids.getAll();
+			for (Iterator<String> iter = noms.iterator(); iter.hasNext();) {
+				String name = iter.next();
+				ids.estCalculable(name);
 			}
-		/*} catch (Exception e) {
-			// on ignore la 1ere execption et on lance celle-ci
-			throw new NoSuchElementException();
-		}*/
+		}
 	}
 
 	/**
@@ -79,16 +74,14 @@ public class UneExpression implements IExpression {
 			pile.ajoute(element.calcule(pile, ids));
 
 			if (displaySteps) {
-				System.out.println("Pile après : " + pile.toString());
+				System.out.println("Pile : " + pile.toString());
 			}
 		}
-
-		
-		// 
 		double resultat = pile.retire();
 
 		if (!pile.estVide()) {
-			throw new OperatorMissException("Attention, l'expression semble incomplète, il reste des éléments sur la pile de calcul");
+			throw new OperatorMissException(
+					"Attention, l'expression semble incomplète, il reste des éléments sur la pile de calcul");
 		}
 		return resultat;
 	}

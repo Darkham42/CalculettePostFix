@@ -1,5 +1,12 @@
 package calculettePostFix;
 
+/**
+ * La classe <b>CharInvalidException</b> permet de gérer l'erreur d'un caractère
+ * invalide
+ * 
+ * @author Thomas
+ * 
+ */
 @SuppressWarnings("serial")
 public class CharInvalidException extends IllegalArgumentException {
 

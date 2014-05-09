@@ -1,5 +1,12 @@
 package calculettePostFix;
 
+/**
+ * La classe <b>DivideByZeroException</b> permet de gérer l'erreur de la
+ * division par zéro
+ * 
+ * @author Thomas
+ * 
+ */
 @SuppressWarnings("serial")
 public class DivideByZeroException extends IllegalArgumentException {
 

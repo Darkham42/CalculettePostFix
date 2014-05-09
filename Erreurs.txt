@@ -1,0 +1,5 @@
+
+ Il semble manquer un opérateur à l'expression : ( ( 2.0 / a ) * b )
+ L'expression : 2 2 < contient un caractère non valide (<)
+
+ Il semble manquer un opérateur à l'expression : 2.02.0

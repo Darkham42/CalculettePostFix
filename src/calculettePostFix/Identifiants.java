@@ -44,9 +44,6 @@ public class Identifiants implements IIdentifiants {
 	/**
 	 * Retourne le nom de la variable spécifiée.
 	 * 
-	 * @param id
-	 *            l'identifiant à rechercher
-	 * @return le nom de la variable
 	 */
 	public Set<String> getAll() {
 		return mTable.keySet();
@@ -77,13 +74,13 @@ public class Identifiants implements IIdentifiants {
 	 * Permet de vérifier si la variable est calculable
 	 */
 	public boolean estCalculable(String id) {
-			
-			try {
-				mTable.get(id).analyse(null);
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
+
+		try {
+			mTable.get(id).analyse(null);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	/**
