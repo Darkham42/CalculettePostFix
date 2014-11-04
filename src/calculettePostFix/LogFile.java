@@ -13,7 +13,7 @@ import java.io.FileWriter;
  */
 public class LogFile {
 	private static final String ERREURS_FILENAME = "Erreurs.txt";
-	private static final String RÉSULTATS_FILENAME = "Résultats.txt";
+	private static final String RESULTATS_FILENAME = "REsultats.txt";
 
 	/**
 	 * Création du fichier Resultats
@@ -21,7 +21,7 @@ public class LogFile {
 	 * @param texte
 	 */
 	public static void resTXT(String texte) {
-		logTXT(RÉSULTATS_FILENAME, texte);
+		logTXT(RESULTATS_FILENAME, texte);
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class LogFile {
 	 * Méthode permettant de réinitialiser les fichiers
 	 */
 	public static void reinitFichier() {
-		reinitFichier(RÉSULTATS_FILENAME);
+		reinitFichier(RESULTATS_FILENAME);
 		reinitFichier(ERREURS_FILENAME);
 	}
 
